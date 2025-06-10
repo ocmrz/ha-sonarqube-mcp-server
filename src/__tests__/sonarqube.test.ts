@@ -47,7 +47,7 @@ describe('SonarQubeClient', () => {
       nock(baseUrl)
         .get('/api/projects/search')
         .query(true)
-        .matchHeader('authorization', 'Bearer test-token')
+        .matchHeader('authorization', 'Basic dGVzdC10b2tlbjo=')
         .reply(200, mockResponse);
 
       const result = await client.listProjects();
@@ -81,7 +81,7 @@ describe('SonarQubeClient', () => {
       const scope = nock(baseUrl)
         .get('/api/projects/search')
         .query(true)
-        .matchHeader('authorization', 'Bearer test-token')
+        .matchHeader('authorization', 'Basic dGVzdC10b2tlbjo=')
         .reply(200, mockResponse);
 
       const result = await client.listProjects({
@@ -169,7 +169,7 @@ describe('SonarQubeClient', () => {
       nock(baseUrl)
         .get('/api/issues/search')
         .query(true)
-        .matchHeader('authorization', 'Bearer test-token')
+        .matchHeader('authorization', 'Basic dGVzdC10b2tlbjo=')
         .reply(200, mockResponse);
 
       const result = await client.getIssues({ projectKey: 'project1' });
@@ -239,7 +239,7 @@ describe('SonarQubeClient', () => {
           p: 1,
           ps: 5,
         })
-        .matchHeader('authorization', 'Bearer test-token')
+        .matchHeader('authorization', 'Basic dGVzdC10b2tlbjo=')
         .reply(200, mockResponse);
 
       const result = await client.getIssues({
@@ -292,7 +292,7 @@ describe('SonarQubeClient', () => {
             queryObj.languages === 'java,typescript'
           );
         })
-        .matchHeader('authorization', 'Bearer test-token')
+        .matchHeader('authorization', 'Basic dGVzdC10b2tlbjo=')
         .reply(200, mockResponse);
 
       const result = await client.getIssues({
@@ -344,7 +344,7 @@ describe('SonarQubeClient', () => {
             queryObj.inNewCodePeriod === 'true'
           );
         })
-        .matchHeader('authorization', 'Bearer test-token')
+        .matchHeader('authorization', 'Basic dGVzdC10b2tlbjo=')
         .reply(200, mockResponse);
 
       const result = await client.getIssues({
@@ -398,7 +398,7 @@ describe('SonarQubeClient', () => {
       nock(baseUrl)
         .get('/api/metrics/search')
         .query(true)
-        .matchHeader('authorization', 'Bearer test-token')
+        .matchHeader('authorization', 'Basic dGVzdC10b2tlbjo=')
         .reply(200, mockResponse);
 
       const result = await client.getMetrics();
@@ -437,7 +437,7 @@ describe('SonarQubeClient', () => {
         .query((actualQuery) => {
           return actualQuery.p === '2' && actualQuery.ps === '1';
         })
-        .matchHeader('authorization', 'Bearer test-token')
+        .matchHeader('authorization', 'Basic dGVzdC10b2tlbjo=')
         .reply(200, mockResponse);
 
       const result = await client.getMetrics({
@@ -461,7 +461,7 @@ describe('SonarQubeClient', () => {
 
       nock(baseUrl)
         .get('/api/system/health')
-        .matchHeader('authorization', 'Bearer test-token')
+        .matchHeader('authorization', 'Basic dGVzdC10b2tlbjo=')
         .reply(200, mockResponse);
 
       const result = await client.getHealth();
@@ -478,7 +478,7 @@ describe('SonarQubeClient', () => {
 
       nock(baseUrl)
         .get('/api/system/health')
-        .matchHeader('authorization', 'Bearer test-token')
+        .matchHeader('authorization', 'Basic dGVzdC10b2tlbjo=')
         .reply(200, mockResponse);
 
       const result = await client.getHealth();
@@ -498,7 +498,7 @@ describe('SonarQubeClient', () => {
 
       nock(baseUrl)
         .get('/api/system/status')
-        .matchHeader('authorization', 'Bearer test-token')
+        .matchHeader('authorization', 'Basic dGVzdC10b2tlbjo=')
         .reply(200, mockResponse);
 
       const result = await client.getStatus();
@@ -513,7 +513,7 @@ describe('SonarQubeClient', () => {
     it('should ping SonarQube successfully', async () => {
       nock(baseUrl)
         .get('/api/system/ping')
-        .matchHeader('authorization', 'Bearer test-token')
+        .matchHeader('authorization', 'Basic dGVzdC10b2tlbjo=')
         .reply(200, 'pong');
 
       const result = await client.ping();
@@ -533,7 +533,7 @@ describe('SonarQubeClient', () => {
         .query((actualQuery) => {
           return actualQuery.projects === 'proj1,proj2';
         })
-        .matchHeader('authorization', 'Bearer test-token')
+        .matchHeader('authorization', 'Basic dGVzdC10b2tlbjo=')
         .reply(200, mockResponse);
 
       await client.getIssues({
@@ -561,7 +561,7 @@ describe('SonarQubeClient', () => {
             actualQuery.onComponentOnly === 'true'
           );
         })
-        .matchHeader('authorization', 'Bearer test-token')
+        .matchHeader('authorization', 'Basic dGVzdC10b2tlbjo=')
         .reply(200, mockResponse);
 
       await client.getIssues({
@@ -587,7 +587,7 @@ describe('SonarQubeClient', () => {
         .query((actualQuery) => {
           return actualQuery.branch === 'feature/test' && actualQuery.pullRequest === '123';
         })
-        .matchHeader('authorization', 'Bearer test-token')
+        .matchHeader('authorization', 'Basic dGVzdC10b2tlbjo=')
         .reply(200, mockResponse);
 
       await client.getIssues({
@@ -618,7 +618,7 @@ describe('SonarQubeClient', () => {
             actualQuery.types === 'BUG,VULNERABILITY'
           );
         })
-        .matchHeader('authorization', 'Bearer test-token')
+        .matchHeader('authorization', 'Basic dGVzdC10b2tlbjo=')
         .reply(200, mockResponse);
 
       await client.getIssues({
@@ -650,7 +650,7 @@ describe('SonarQubeClient', () => {
             actualQuery.languages === 'java,javascript'
           );
         })
-        .matchHeader('authorization', 'Bearer test-token')
+        .matchHeader('authorization', 'Basic dGVzdC10b2tlbjo=')
         .reply(200, mockResponse);
 
       await client.getIssues({
@@ -683,7 +683,7 @@ describe('SonarQubeClient', () => {
             actualQuery.authors === 'author1,author2'
           );
         })
-        .matchHeader('authorization', 'Bearer test-token')
+        .matchHeader('authorization', 'Basic dGVzdC10b2tlbjo=')
         .reply(200, mockResponse);
 
       await client.getIssues({
@@ -720,7 +720,7 @@ describe('SonarQubeClient', () => {
             actualQuery.sonarsourceSecurity === 'injection'
           );
         })
-        .matchHeader('authorization', 'Bearer test-token')
+        .matchHeader('authorization', 'Basic dGVzdC10b2tlbjo=')
         .reply(200, mockResponse);
 
       await client.getIssues({
@@ -753,7 +753,7 @@ describe('SonarQubeClient', () => {
             actualQuery.issueStatuses === 'ACCEPTED,CONFIRMED'
           );
         })
-        .matchHeader('authorization', 'Bearer test-token')
+        .matchHeader('authorization', 'Basic dGVzdC10b2tlbjo=')
         .reply(200, mockResponse);
 
       await client.getIssues({
@@ -789,7 +789,7 @@ describe('SonarQubeClient', () => {
             actualQuery.additionalFields === '_all'
           );
         })
-        .matchHeader('authorization', 'Bearer test-token')
+        .matchHeader('authorization', 'Basic dGVzdC10b2tlbjo=')
         .reply(200, mockResponse);
 
       await client.getIssues({
@@ -814,7 +814,7 @@ describe('SonarQubeClient', () => {
         .query((actualQuery) => {
           return actualQuery.inNewCodePeriod === 'true' && actualQuery.sinceLeakPeriod === 'true';
         })
-        .matchHeader('authorization', 'Bearer test-token')
+        .matchHeader('authorization', 'Basic dGVzdC10b2tlbjo=')
         .reply(200, mockResponse);
 
       await client.getIssues({
@@ -840,7 +840,7 @@ describe('SonarQubeClient', () => {
         .query((actualQuery) => {
           return actualQuery.severities === 'MAJOR';
         })
-        .matchHeader('authorization', 'Bearer test-token')
+        .matchHeader('authorization', 'Basic dGVzdC10b2tlbjo=')
         .reply(200, mockResponse);
 
       await client.getIssues({ severity: 'MAJOR' });
@@ -860,7 +860,7 @@ describe('SonarQubeClient', () => {
         .query((actualQuery) => {
           return actualQuery.resolved === 'false';
         })
-        .matchHeader('authorization', 'Bearer test-token')
+        .matchHeader('authorization', 'Basic dGVzdC10b2tlbjo=')
         .reply(200, mockResponse);
 
       await client.getIssues({ resolved: false });
@@ -880,7 +880,7 @@ describe('SonarQubeClient', () => {
         .query((actualQuery) => {
           return actualQuery.assigned === 'false';
         })
-        .matchHeader('authorization', 'Bearer test-token')
+        .matchHeader('authorization', 'Basic dGVzdC10b2tlbjo=')
         .reply(200, mockResponse);
 
       await client.getIssues({ assigned: false });
@@ -941,7 +941,7 @@ describe('SonarQubeClient', () => {
         .query((queryObj) => {
           return queryObj.component === 'my-project' && queryObj.metricKeys === 'complexity,bugs';
         })
-        .matchHeader('authorization', 'Bearer test-token')
+        .matchHeader('authorization', 'Basic dGVzdC10b2tlbjo=')
         .reply(200, mockResponse);
 
       const result = await client.getComponentMeasures({
@@ -1002,7 +1002,7 @@ describe('SonarQubeClient', () => {
             queryObj.branch === 'main'
           );
         })
-        .matchHeader('authorization', 'Bearer test-token')
+        .matchHeader('authorization', 'Basic dGVzdC10b2tlbjo=')
         .reply(200, mockResponse);
 
       const result = await client.getComponentMeasures({
@@ -1094,7 +1094,7 @@ describe('SonarQubeClient', () => {
           component: 'project1',
           metricKeys: 'bugs,vulnerabilities',
         })
-        .matchHeader('authorization', 'Bearer test-token')
+        .matchHeader('authorization', 'Basic dGVzdC10b2tlbjo=')
         .reply(200, {
           component: mockResponse.components[0],
           metrics: mockResponse.metrics,
@@ -1106,7 +1106,7 @@ describe('SonarQubeClient', () => {
           component: 'project2',
           metricKeys: 'bugs,vulnerabilities',
         })
-        .matchHeader('authorization', 'Bearer test-token')
+        .matchHeader('authorization', 'Basic dGVzdC10b2tlbjo=')
         .reply(200, {
           component: mockResponse.components[1],
           metrics: mockResponse.metrics,
@@ -1119,7 +1119,7 @@ describe('SonarQubeClient', () => {
           component: 'project1',
           metricKeys: 'bugs,vulnerabilities',
         })
-        .matchHeader('authorization', 'Bearer test-token')
+        .matchHeader('authorization', 'Basic dGVzdC10b2tlbjo=')
         .reply(200, {
           component: mockResponse.components[0],
           metrics: mockResponse.metrics,
@@ -1190,7 +1190,7 @@ describe('SonarQubeClient', () => {
           additionalFields: 'periods',
           branch: 'main',
         })
-        .matchHeader('authorization', 'Bearer test-token')
+        .matchHeader('authorization', 'Basic dGVzdC10b2tlbjo=')
         .reply(200, {
           component: {
             key: 'project1',
@@ -1210,7 +1210,7 @@ describe('SonarQubeClient', () => {
           additionalFields: 'periods',
           branch: 'main',
         })
-        .matchHeader('authorization', 'Bearer test-token')
+        .matchHeader('authorization', 'Basic dGVzdC10b2tlbjo=')
         .reply(200, {
           component: {
             key: 'project2',
@@ -1230,7 +1230,7 @@ describe('SonarQubeClient', () => {
           additionalFields: 'periods',
           branch: 'main',
         })
-        .matchHeader('authorization', 'Bearer test-token')
+        .matchHeader('authorization', 'Basic dGVzdC10b2tlbjo=')
         .reply(200, {
           component: mockResponse.components[0],
           metrics: mockResponse.metrics,
@@ -1246,7 +1246,7 @@ describe('SonarQubeClient', () => {
           additionalFields: 'periods',
           branch: 'main',
         })
-        .matchHeader('authorization', 'Bearer test-token')
+        .matchHeader('authorization', 'Basic dGVzdC10b2tlbjo=')
         .reply(200, {
           component: {
             key: 'project1',
@@ -1309,7 +1309,7 @@ describe('SonarQubeClient', () => {
           component: 'comp1',
           metricKeys: 'coverage',
         })
-        .matchHeader('authorization', 'Bearer test-token')
+        .matchHeader('authorization', 'Basic dGVzdC10b2tlbjo=')
         .reply(200, {
           component: mockResponse.components[0],
           metrics: mockResponse.metrics,
@@ -1321,7 +1321,7 @@ describe('SonarQubeClient', () => {
           component: 'comp2',
           metricKeys: 'coverage',
         })
-        .matchHeader('authorization', 'Bearer test-token')
+        .matchHeader('authorization', 'Basic dGVzdC10b2tlbjo=')
         .reply(200, {
           component: mockResponse.components[1],
           metrics: mockResponse.metrics,
@@ -1334,7 +1334,7 @@ describe('SonarQubeClient', () => {
           component: 'comp1',
           metricKeys: 'coverage',
         })
-        .matchHeader('authorization', 'Bearer test-token')
+        .matchHeader('authorization', 'Basic dGVzdC10b2tlbjo=')
         .reply(200, {
           component: mockResponse.components[0],
           metrics: mockResponse.metrics,
@@ -1384,7 +1384,7 @@ describe('SonarQubeClient', () => {
           component: 'project1',
           metricKeys: 'coverage,duplicated_lines_density',
         })
-        .matchHeader('authorization', 'Bearer test-token')
+        .matchHeader('authorization', 'Basic dGVzdC10b2tlbjo=')
         .reply(200, {
           component: mockResponse.components[0],
           metrics: mockResponse.metrics,
@@ -1397,7 +1397,7 @@ describe('SonarQubeClient', () => {
           component: 'project1',
           metricKeys: 'coverage,duplicated_lines_density',
         })
-        .matchHeader('authorization', 'Bearer test-token')
+        .matchHeader('authorization', 'Basic dGVzdC10b2tlbjo=')
         .reply(200, {
           component: mockResponse.components[0],
           metrics: mockResponse.metrics,
@@ -1457,7 +1457,7 @@ describe('SonarQubeClient', () => {
         .query((queryObj) => {
           return queryObj.component === 'my-project' && queryObj.metrics === 'coverage,bugs';
         })
-        .matchHeader('authorization', 'Bearer test-token')
+        .matchHeader('authorization', 'Basic dGVzdC10b2tlbjo=')
         .reply(200, mockResponse);
 
       const result = await client.getMeasuresHistory({
@@ -1509,7 +1509,7 @@ describe('SonarQubeClient', () => {
             queryObj.branch === 'main'
           );
         })
-        .matchHeader('authorization', 'Bearer test-token')
+        .matchHeader('authorization', 'Basic dGVzdC10b2tlbjo=')
         .reply(200, mockResponse);
 
       const result = await client.getMeasuresHistory({
@@ -1571,7 +1571,7 @@ describe('SonarQubeClient', () => {
             actualQuery.ps === '50'
           );
         })
-        .matchHeader('authorization', 'Bearer test-token')
+        .matchHeader('authorization', 'Basic dGVzdC10b2tlbjo=')
         .reply(200, mockResponse);
 
       const result = await client.hotspots({
@@ -1607,7 +1607,7 @@ describe('SonarQubeClient', () => {
             actualQuery.sinceLeakPeriod === 'true'
           );
         })
-        .matchHeader('authorization', 'Bearer test-token')
+        .matchHeader('authorization', 'Basic dGVzdC10b2tlbjo=')
         .reply(200, mockResponse);
 
       await client.hotspots({
@@ -1664,7 +1664,7 @@ describe('SonarQubeClient', () => {
       const scope = nock(baseUrl)
         .get('/api/hotspots/show')
         .query({ hotspot: 'AYg1234567890' })
-        .matchHeader('authorization', 'Bearer test-token')
+        .matchHeader('authorization', 'Basic dGVzdC10b2tlbjo=')
         .reply(200, mockResponse);
 
       const result = await client.hotspot('AYg1234567890');
@@ -1683,7 +1683,7 @@ describe('SonarQubeClient', () => {
           resolution: 'FIXED',
           comment: 'Fixed by using prepared statements',
         })
-        .matchHeader('authorization', 'Bearer test-token')
+        .matchHeader('authorization', 'Basic dGVzdC10b2tlbjo=')
         .reply(204);
 
       await client.updateHotspotStatus({
@@ -1702,7 +1702,7 @@ describe('SonarQubeClient', () => {
           hotspot: 'AYg1234567890',
           status: 'TO_REVIEW',
         })
-        .matchHeader('authorization', 'Bearer test-token')
+        .matchHeader('authorization', 'Basic dGVzdC10b2tlbjo=')
         .reply(204);
 
       await client.updateHotspotStatus({

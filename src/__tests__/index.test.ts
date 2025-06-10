@@ -1111,7 +1111,7 @@ describe('MCP Server', () => {
               queryObject.pullRequest === 'pr-123'
             );
           })
-          .matchHeader('authorization', 'Bearer test-token')
+          .matchHeader('authorization', 'Basic dGVzdC10b2tlbjo=')
           .reply(200, {
             component: {
               key: 'test-component',
@@ -1177,7 +1177,7 @@ describe('MCP Server', () => {
             component: 'test-component-1',
             metricKeys: 'bugs',
           })
-          .matchHeader('authorization', 'Bearer test-token')
+          .matchHeader('authorization', 'Basic dGVzdC10b2tlbjo=')
           .reply(200, {
             component: {
               key: 'test-component-1',
@@ -1207,7 +1207,7 @@ describe('MCP Server', () => {
             component: 'test-component-2',
             metricKeys: 'bugs',
           })
-          .matchHeader('authorization', 'Bearer test-token')
+          .matchHeader('authorization', 'Basic dGVzdC10b2tlbjo=')
           .reply(200, {
             component: {
               key: 'test-component-2',
@@ -1238,7 +1238,7 @@ describe('MCP Server', () => {
             component: 'test-component-1',
             metricKeys: 'bugs',
           })
-          .matchHeader('authorization', 'Bearer test-token')
+          .matchHeader('authorization', 'Basic dGVzdC10b2tlbjo=')
           .reply(200, {
             component: {
               key: 'test-component-1',
@@ -1284,7 +1284,7 @@ describe('MCP Server', () => {
             branch: 'develop',
             pullRequest: 'pr-456',
           })
-          .matchHeader('authorization', 'Bearer test-token')
+          .matchHeader('authorization', 'Basic dGVzdC10b2tlbjo=')
           .reply(200, {
             component: {
               key: 'test-component-1',
@@ -1337,7 +1337,7 @@ describe('MCP Server', () => {
             branch: 'develop',
             pullRequest: 'pr-456',
           })
-          .matchHeader('authorization', 'Bearer test-token')
+          .matchHeader('authorization', 'Basic dGVzdC10b2tlbjo=')
           .reply(200, {
             component: {
               key: 'test-component-1',
@@ -1390,7 +1390,7 @@ describe('MCP Server', () => {
             branch: 'develop',
             pullRequest: 'pr-456',
           })
-          .matchHeader('authorization', 'Bearer test-token')
+          .matchHeader('authorization', 'Basic dGVzdC10b2tlbjo=')
           .reply(200, {
             component: {
               key: 'test-component-2',
@@ -2870,7 +2870,7 @@ describe('MCP Server', () => {
             p: '1',
             ps: '50',
           })
-          .matchHeader('authorization', 'Bearer test-token')
+          .matchHeader('authorization', 'Basic dGVzdC10b2tlbjo=')
           .reply(200, {
             hotspots: [
               {
@@ -2922,7 +2922,7 @@ describe('MCP Server', () => {
           .query({
             hotspot: 'AYg1234567890',
           })
-          .matchHeader('authorization', 'Bearer test-token')
+          .matchHeader('authorization', 'Basic dGVzdC10b2tlbjo=')
           .reply(200, {
             key: 'AYg1234567890',
             component: {
@@ -2975,7 +2975,7 @@ describe('MCP Server', () => {
             resolution: 'FIXED',
             comment: 'Fixed by using parameterized queries',
           })
-          .matchHeader('authorization', 'Bearer test-token')
+          .matchHeader('authorization', 'Basic dGVzdC10b2tlbjo=')
           .reply(200, {});
 
         const response = await handleSonarQubeUpdateHotspotStatus({
@@ -2994,7 +2994,7 @@ describe('MCP Server', () => {
             hotspot: 'AYg1234567890',
             status: 'TO_REVIEW',
           })
-          .matchHeader('authorization', 'Bearer test-token')
+          .matchHeader('authorization', 'Basic dGVzdC10b2tlbjo=')
           .reply(200, {});
 
         const response = await handleSonarQubeUpdateHotspotStatus({

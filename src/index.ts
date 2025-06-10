@@ -20,6 +20,12 @@ import {
 import { z } from 'zod';
 import { createLogger } from './utils/logger.js';
 
+// Disable SSL certificate verification by default for internal/self-signed certificates
+// This can be overridden by setting NODE_TLS_REJECT_UNAUTHORIZED=1 if strict SSL is required
+if (!process.env.NODE_TLS_REJECT_UNAUTHORIZED) {
+  process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+}
+
 const logger = createLogger('index');
 
 interface Connectable {
@@ -109,7 +115,7 @@ const validateEnvironmentVariables = () => {
 
   // Log which authentication method is being used
   if (hasToken) {
-    logger.info('Using token authentication');
+    logger.info('Using token authentication (via Basic Auth)');
   } else if (hasBasicAuth) {
     logger.info('Using basic authentication');
   } else if (hasPasscode) {

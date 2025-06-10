@@ -1,12 +1,12 @@
 {
-  "name": "sonarqube-mcp-server",
+  "name": "ha-sonarqube-mcp-server",
   "version": "1.3.2",
   "description": "Model Context Protocol server for SonarQube",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "bin": {
-    "sonarqube-mcp-server": "./dist/index.js"
+    "ha-sonarqube-mcp-server": "./dist/index.js"
   },
   "exports": {
     ".": {

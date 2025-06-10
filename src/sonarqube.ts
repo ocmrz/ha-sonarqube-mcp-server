@@ -755,15 +755,17 @@ export class SonarQubeClient implements ISonarQubeClient {
   private readonly organization: string | null;
 
   /**
-   * Creates a new SonarQube client
-   * @param token SonarQube authentication token
+   * Creates a new SonarQube client using Basic Authentication with token as username
+   * @param token SonarQube authentication token (used as username in Basic Auth)
    * @param baseUrl Base URL of the SonarQube instance (default: https://sonarcloud.io)
    * @param organization Organization name
    */
   constructor(token: string, baseUrl = DEFAULT_SONARQUBE_URL, organization?: string | null) {
-    this.webApiClient = WebApiClient.withToken(
+    // Use Basic Auth with token as username and empty password
+    this.webApiClient = WebApiClient.withBasicAuth(
       baseUrl,
       token,
+      '', // Empty password
       organization ? { organization } : undefined
     );
     this.organization = organization ?? null;
@@ -1610,7 +1612,7 @@ export class SonarQubeClient implements ISonarQubeClient {
 export function createSonarQubeClientWithBasicAuth(
   username: string,
   password: string,
-  baseUrl?: string,
+  baseUrl = DEFAULT_SONARQUBE_URL,
   organization?: string | null
 ): ISonarQubeClient {
   return SonarQubeClient.withBasicAuth(username, password, baseUrl, organization);
@@ -1625,7 +1627,7 @@ export function createSonarQubeClientWithBasicAuth(
  */
 export function createSonarQubeClientWithPasscode(
   passcode: string,
-  baseUrl?: string,
+  baseUrl = DEFAULT_SONARQUBE_URL,
   organization?: string | null
 ): ISonarQubeClient {
   return SonarQubeClient.withPasscode(passcode, baseUrl, organization);
@@ -1634,7 +1636,7 @@ export function createSonarQubeClientWithPasscode(
 /**
  * Creates a SonarQube client from environment variables
  * Supports multiple authentication methods:
- * - Token auth: SONARQUBE_TOKEN
+ * - Token auth: SONARQUBE_TOKEN (sent via Basic Auth with token as username)
  * - Basic auth: SONARQUBE_USERNAME and SONARQUBE_PASSWORD
  * - Passcode auth: SONARQUBE_PASSCODE
  * @returns A new SonarQube client instance
@@ -1643,9 +1645,9 @@ export function createSonarQubeClientFromEnv(): ISonarQubeClient {
   const baseUrl = process.env.SONARQUBE_URL ?? DEFAULT_SONARQUBE_URL;
   const organization = process.env.SONARQUBE_ORGANIZATION ?? null;
 
-  // Priority 1: Token auth (backward compatibility)
+  // Priority 1: Token auth (sent via Basic Auth format)
   if (process.env.SONARQUBE_TOKEN) {
-    logger.debug('Using token authentication');
+    logger.debug('Using token authentication via Basic Auth');
     return new SonarQubeClient(process.env.SONARQUBE_TOKEN, baseUrl, organization);
   }
 
@@ -1672,8 +1674,8 @@ export function createSonarQubeClientFromEnv(): ISonarQubeClient {
 }
 
 /**
- * Factory function to create a SonarQube client
- * @param token SonarQube authentication token
+ * Factory function to create a SonarQube client using Basic Auth with token as username
+ * @param token SonarQube authentication token (used as username in Basic Auth)
  * @param baseUrl Base URL of the SonarQube instance
  * @param organization Organization name
  * @returns A new SonarQube client instance
